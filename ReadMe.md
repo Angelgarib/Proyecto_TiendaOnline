@@ -24,30 +24,30 @@ Tienda online de juegos de mesa Board this way.
 
 • Estructura del proyecto:
 En la raíz del proyecto están los ficheros de configuración y las carpetas principales:
-📄 .env
-📄 composer.lock
-📄 composer.json
-📄 dockerfile
-📄 docker-compose.yml
-📁 database (contiene el fichero con la base de datos init.sql)
-📁 tests (vacía de momento)
-📁 vendor (contiene todas las librerías)
-📁 src (en detalle a continuación)
+- 📄 .env
+- 📄 composer.lock
+- 📄 composer.json
+- 📄 dockerfile
+- 📄 docker-compose.yml
+- 📁 database (contiene el fichero con la base de datos init.sql)
+- 📁 tests (vacía de momento)
+- 📁 vendor (contiene todas las librerías)
+- 📁 src (en detalle a continuación)
 
 En "src" hay:
-📁 config (config.php)
-📁 models (contiene las clases: genero.php, producto.php y user.php)
-📁 services (contiene los controladores: GeneroServices.php, ProductosServices.php, SessionServices.php y UserServices.php)
-📁 uploads (contiene el favicon.png)
-📄 create.php (página de creación de un producto)
-📄 delete.php (función de borrado de un producto)
-📄 details.php (página donde se muestran los detalles de un producto)
-📄 footer.php (bloque que muestra el pie de la página web)
-📄 header.php (bloque que muestra el encabezado de la página web)
-📄 index.php (página principal de la web)
-📄 login.php (página de inicio de sesión)
-📄 logout.php (función de cerrar sesión)
-📄 update.php (página para editar la información de un producto)
+- 📁 config (config.php)
+- 📁 models (contiene las clases: genero.php, producto.php y user.php)
+- 📁 services (contiene los controladores: GeneroServices.php, ProductosServices.php, SessionServices.php y UserServices.php)
+- 📁 uploads (contiene el favicon.png)
+- 📄 create.php (página de creación de un producto)
+- 📄 delete.php (función de borrado de un producto)
+- 📄 details.php (página donde se muestran los detalles de un producto)
+- 📄 footer.php (bloque que muestra el pie de la página web)
+- 📄 header.php (bloque que muestra el encabezado de la página web)
+- 📄 index.php (página principal de la web)
+- 📄 login.php (página de inicio de sesión)
+- 📄 logout.php (función de cerrar sesión)
+- 📄 update.php (página para editar la información de un producto)
 
 • Instrucciones de instalación:
 - Primeramente se creó la carpeta del proyecto donde se guardaron los ficheros de configuración iniciales.
@@ -59,15 +59,15 @@ En "src" hay:
 • Uso básico:
 - Para acceder a la aplicación se puede hacer desde localhost o clickando en el enlace de Docker.
 - Para navegar por ella están las siguientes páginas:
-    🏠 El main menú o página principal es la primera página que se ve, desde el encabezado se puede navegar a las demás. El nombre de la web o "Lista de productos" redirigen a esta página.
-    📝 Añadir producto redirige a la página de crear un artículo para guardarlo en la BBDD (solo disponible con inicio de sesión y privilegios de administrador).
-    🔐 Login redirige a una página para insertar las credenciales de inicio de sesión.
-    🔎 La barra de búsqueda de la página principal permite filtrar los productos por género.
-    - En las tarjetas de producto se encuentran las siguiente funciones:
-    ℹ️ Detalles permite ver toda la información de cada producto (función disponible para todos).
-    ✏️ Editar redirige a una página para cambiar la información de un producto (solo disponible con inicio de sesión y privilegios de administrador).
-    🗑️ Eliminar abre un modal que hay que aceptar para borrar un producto (solo disponible con inicio de sesión y privilegios de administrador).
-    🚪 Logout es un botón que aparece en el encabezado solo si se ha iniciado sesión para cerrarla.
+    - 🏠 El main menú o página principal es la primera página que se ve, desde el encabezado se puede navegar a las demás. El nombre de la web o "Lista de productos" redirigen a esta página.
+    - 📝 Añadir producto redirige a la página de crear un artículo para guardarlo en la BBDD (solo disponible con inicio de sesión y privilegios de administrador).
+    - 🔐 Login redirige a una página para insertar las credenciales de inicio de sesión.
+    - 🔎 La barra de búsqueda de la página principal permite filtrar los productos por género.
+  En las tarjetas de producto se encuentran las siguiente funciones:
+    - ℹ️ Detalles permite ver toda la información de cada producto (función disponible para todos).
+    - ✏️ Editar redirige a una página para cambiar la información de un producto (solo disponible con inicio de sesión y privilegios de administrador).
+    - 🗑️ Eliminar abre un modal que hay que aceptar para borrar un producto (solo disponible con inicio de sesión y privilegios de administrador).
+    - 🚪 Logout es un botón que aparece en el encabezado solo si se ha iniciado sesión para cerrarla.
 
 • Requisitos previos: 
 - PHP 8.0-apache
