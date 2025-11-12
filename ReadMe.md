@@ -2,7 +2,7 @@
 Tienda online de juegos de mesa Board this way.
 
 • Se trata de la página web para una tienda online que dispone de:
-- Un CRUD completo(Create, Read, Update, Delete).
+- Un CRUD completo (Create, Read, Update, Delete).
 - Filtrado de juegos por género.
 - Diseño con tarjetas horizontales.
 - Login/logout funcional.
@@ -63,20 +63,90 @@ En "src" hay:
     - 📝 Añadir producto redirige a la página de crear un artículo para guardarlo en la BBDD (solo disponible con inicio de sesión y privilegios de administrador).
     - 🔐 Login redirige a una página para insertar las credenciales de inicio de sesión.
     - 🔎 La barra de búsqueda de la página principal permite filtrar los productos por género.
-  En las tarjetas de producto se encuentran las siguiente funciones:
+    En las tarjetas de producto se encuentran las siguiente funciones:
     - ℹ️ Detalles permite ver toda la información de cada producto (función disponible para todos).
     - ✏️ Editar redirige a una página para cambiar la información de un producto (solo disponible con inicio de sesión y privilegios de administrador).
     - 🗑️ Eliminar abre un modal que hay que aceptar para borrar un producto (solo disponible con inicio de sesión y privilegios de administrador).
     - 🚪 Logout es un botón que aparece en el encabezado solo si se ha iniciado sesión para cerrarla.
 
+• Lógica del proyecto:
+1. Gestión de la base de datos:
+    - Estructura de tablas:
+        1. usuarios (id, apellidos, email, nombre, password, username).
+        2. productos (nombre, precio, stock, id, genero_id, uuid, imagen, num_jugadores, tipo).
+        3. generos (id, nombre).
+        4. user_roles (user_id, roles).
+    - Características técnicas:
+        - IDs autoincrementales para productos y usuarios.
+        - UUIDs para géneros, productos y relaciones.
+        - Claves únicas en username y email.
+        - Integridad referencial con foreign keys.
+2. CRUD de productos:
+    - Create:
+        1. Formulario para validar los datos obligatorios (nombre, precio, stock, etc.).
+        2. Generación de UUID único para cada producto.
+        3. PostgreSQL asigna un ID autoincremental automáticamente.
+        4. Establece relación con género mediante UUID.
+    - Read:
+        1. findAll(): Obtiene todos los productos.
+        2. findById(): Busca un producto específico por ID.
+        3. findAllWithGenreName(): Filtra por género con JOIN.
+        4. Los productos se muestran en tarjetas horizontales.
+    - Update:
+        1. Recibe ID del producto a editar por parámetro GET.
+        2. Rellena el formulario con datos actuales.
+        3. Reordena géneros para mostrar el actual primero.
+        4. Actualiza solo los campos modificados.
+    - Delete:
+        1. Confirmación JavaScript antes de eliminar.
+        2. Eliminación física directa en base de datos.
+        3. Alertas de éxito/error con redirección.
+3. Gestión de usuarios y roles:
+    - Roles:
+        - Administrador: Acceso completo (CRUD).
+        - Usuario: Solo lectura (ver productos).
+        - Visitante: Solo login y ver productos.
+    - Autenticación:
+        1. Verifica credenciales (username + password).
+        2. Consulta roles del usuario en tabla user_roles.
+        3. Inicia sesión con datos de usuario y roles.
+        4. Redirige automáticamente al index.
+    - Control de accesos:
+        - Botones "Editar/Eliminar" ocultos para no-administradores.
+        - Páginas CRUD protegidas con requireAdmin().
+        - El encabezado muestra el rol actual (Admin/User).
+4. Gestión de categorías y productos:
+    - Relación: Productos → genero_id (UUID) → Géneros (id).
+    - Menú dropdown de géneros que se reordena dinámicamente en modo edición.
+    - Filtrado que mantiene los valores del formulario.
+5. Seguridad del sistema:
+    - Autenticación:
+        - Sesiones con expiración (1 hora).
+        - Verificación de credenciales segura.
+        - Logout limpio de variables de sesión.
+    - Autorización:
+        - Verificación en dos niveles: isLoggedIn() + isAdmin().
+        - Redirecciones automáticas si no tiene permisos.
+    - Validaciones:
+        - Filtrado de inputs con filter_input().
+        - Sanitización de datos antes de guardar.
+        - Validación de tipos de datos (float, int).
+        - Manejo de errores con try-catch.
+
 • Requisitos previos: 
-- PHP 8.0-apache
+- PHP 7.4+ con extensiones: pdo_pgsql, session
 - Docker 4.48.0
-- PostGres 12
+- PostgreSQL 12+
 - Apache 2.0
-- Ramsey/collection
+- Ramsey/UUID: Generación de identificadores únicos.
+- vlucas/phpdotenv: Gestión de variables de entorno.
+- Configuración adicional:
+    - Conexión a PostgreSQL con variables de entorno.
+    - Patrón Singleton para una única instancia de conexión.
+    - Configuración de rutas y uploads.
 
 • Autores y créditos: 
 - Ángel José García Ibáñez
+- GitHub: https://github.com/Angelgarib/Proyecto_TiendaOnline.git
 
 • Licencia para uso educativo.
