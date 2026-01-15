@@ -1,14 +1,14 @@
 <?php
+use config\Config;
+use services\SessionServices;
+use services\ProductosServices;
+use services\GeneroServices;
+use Ramsey\Uuid\Uuid;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/config/config.php';
 require_once __DIR__ . '/services/SessionServices.php';
 require_once __DIR__ . '/services/GeneroServices.php';
-
-use config\Config;
-use services\ProductosServices;
-use services\SessionServices;
-use services\GeneroServices;
-use Ramsey\Uuid\Uuid;
 
 try {
     $sessionService = SessionServices::getInstance();
@@ -273,7 +273,7 @@ try {
             <div class="producto-card">
                 <!-- ID autoincremental (índice del array + 1) -->
                 <div class="producto-id">
-                    <?php echo $i + 1; ?>
+                    <?php echo htmlspecialchars($producto['id']); ?>
                 </div>
 
                 <!-- Información del producto -->
@@ -302,9 +302,7 @@ try {
                 <div class="producto-acciones">
                     <a href="details.php?id=<?php echo htmlspecialchars($producto['id']); ?>"><button id="btnDetalles">Detalles</button></a>
                     <?php
-                    require_once __DIR__ . '/services/SessionServices.php';
-                    $sessionService = services\SessionServices::getInstance();
-                    
+                                        
                     // Solo mostrar botones de Editar y Eliminar si el usuario es Admin
                     if ($sessionService->isLoggedIn() && $sessionService->isAdmin()):?>
                         <a href="update.php?id=<?php echo htmlspecialchars($producto['id']); ?>"><button id="btnEditar">Editar</button></a>

@@ -71,7 +71,7 @@ class ProductosServices
     {
         try {
             $sql = "SELECT p.nombre, p.precio, p.stock, p.id, p.genero_id, p.imagen, 
-            p.num_jugadores, p.tipo FROM productos p, generos g WHERE p.genero_id = g.id AND g.nombre = :genero";
+            p.num_jugadores, p.tipo FROM productos p, generos g WHERE p.genero_id = g.id AND g.nombre = :genero ORDER BY id ASC";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':genero', strtoupper($genero));
             $stmt->execute();
@@ -182,7 +182,7 @@ class ProductosServices
     public function findAll()
     {
         try {
-            $sql = "SELECT * FROM productos ORDER BY id DESC";
+            $sql = "SELECT * FROM productos ORDER BY id ASC";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
 

@@ -1,12 +1,16 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/services/SessionServices.php';
 require_once __DIR__ . '/services/GeneroServices.php';
 
 use config\Config;
+use services\SessionServices;
 use services\ProductosServices;
 use Ramsey\Uuid\Uuid;
 use services\GeneroServices;
+
+$sessionService = SessionServices::getInstance();
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
